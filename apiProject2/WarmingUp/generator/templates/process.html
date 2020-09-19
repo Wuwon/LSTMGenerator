@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+
+{% block style %}
+    <link rel='stylesheet' href ="{% static 'css/process.css' %}" />
+{% endblock style %}
+
+
+     {% comment %} <div class = exp_box>
+        <div class = exp>1.설명</div>
+        <div class = exp>2.설명</div>
+        <div class = exp>3.설명</div>
+        <div class = exp>4.설명</div>
+    </div>  {% endcomment %}
+    
+{% block title %}
+    데이터 처리
+{% endblock title %}
+   
+{% block content %}
+
+    <!-- <form action="./db" method="post"> -->
+    <form action="{% url 'run' %}" method="POST">
+        {% csrf_token %}     
+        <textarea placeholder="해당 텍스트 박스에 문장을 입력하면 AI를 활용한 소설을 만들어냅니다." id='inputBox' name='dahyun' cols='120' rows='10'>{{content}}</textarea>
+        <br>
+        {% comment %} <input type="submit" value="작성" name='run'> {% endcomment %}
+        <button class = 'submit1' onclick = "myFunction()" name = 'run'>Data Processing</button>
+    </form>
+
+
+    <br>
+    <form action="{% url 'process' %}"method="POST">
+        {% csrf_token %}   
+        <textarea placeholder="입력된 값을 가지고 학습된 데이터를 기반으로 소설을 생성합니다." id='resultBox' name='content' cols='120' rows='17'>{{result}}</textarea>
+        <br>
+     
+        <div class = submit_box2>
+            <button class = 'submit2'>Reset</button>
+            <button class = 'submit2'>Save</button>    
+            
+        </div>
+            
+    </form>       
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    {% comment %} <script>
+        function myFunction() {
+            var x = {{result}}
+        document.getElementById("resultBox").innerHTML = x;
+        }
+    </script> {% endcomment %}
+    
+{% endblock content %}
