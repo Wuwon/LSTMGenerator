@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insight Ai소설</title>
+    
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+        <style type="text/css">
+        a { text-decoration:none }    
+    </style>
+    {% block style %}
+    {% endblock style %}
+</head>
+<body>
+    <div class="box">
+        <div class="nav_box">
+            <div class="nav" style="cursor: pointer;"><a href ="{% url 'process' %}">AI 소설</a></div>
+            <div class="nav" style="cursor: pointer;"><a href ="{% url 'userlist' %}">저장 내역</a></div>
+            <div class="nav" style="cursor: pointer;"><a href ="{% url 'tech' %}">기술 내역</a></div>
+            <div class="nav" style="cursor: pointer;"><a href ="{% url 'maker' %}">만든 사람들</a></div>
+            {% if user.is_authenticated %}
+            <div class="nav" style="cursor: pointer;"><a href ="{% url 'logout' %}">로그아웃</a></div>
+            {% endif %}
+        </div>
+   <div class = "sub_box">
+            <div class = "sub">{% block title %}{% endblock title %}</div>
+    </div>
+    {% block content %}
+    {% endblock content %}
+
+        <div class= subtitle_box>
+            <div class = subtitle>광주 인공지능 사관학교 워밍업 프로젝트 </div>
+        </div>
+    </div>
+</body>
+</html>
